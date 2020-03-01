@@ -1,0 +1,126 @@
+
+
+<mat-sidenav-container fullscreen>
+  <mat-sidenav #sidenav mode="side" class="app-sidenav" opened="false">
+
+    <mat-toolbar class="toolbar-filler">
+      <!--future svg to go here-->
+      <img src="./assets/BusyQaCrm.png" width="150px" height="250px" *ngIf="isLoggedIn"/>
+      <span class="toolbar-filler"></span>
+      <button mat-icon-button (click)="sidenav.toggle()" class="mat-icon-button sidenav-toggle-button"
+              [hidden]="!sidenav.opened">
+        <mat-icon aria-label="Menu" class="material-icons">keyboard_arrow_left</mat-icon>
+      </button>
+    </mat-toolbar>
+    <mat-nav-list>
+      <h2 matSubheader class="h1" *ngIf="isInternalUser"> Client </h2>
+      <a mat-list-item class="sidenav-link" [routerLink]="['leads-list']" (click)="sidenav.toggle()" *ngIf="showLeads"
+         routerLinkActive="is-active">
+        <mat-icon mat-list-icon>account_box</mat-icon>
+        <span class="title" mat-line>Leads</span>
+      </a>
+
+      <a mat-list-item class="sidenav-link" [routerLink]="['student-list']" (click)="sidenav.toggle()"
+         *ngIf="showStudent" routerLinkActive="is-active">
+        <mat-icon mat-list-icon>accessibility_new</mat-icon>
+        <span class="title" mat-line>Students</span>
+      </a>
+
+      <a mat-list-item class="sidenav-link" [routerLink]="['intern-list']" (click)="sidenav.toggle()" *ngIf="showIntern"
+         routerLinkActive="is-active">
+        <mat-icon mat-list-icon>supervised_user_circle</mat-icon>
+        <span class="title" mat-line>Intern</span>
+      </a>
+
+      <a mat-list-item class="sidenav-link" [routerLink]="['resume-list']" (click)="sidenav.toggle()" *ngIf="showResume"
+         routerLinkActive="is-active">
+        <mat-icon mat-list-icon>ballot</mat-icon>
+        <span class="title" mat-line>Resume</span>
+      </a>
+
+      <a mat-list-item class="sidenav-link" [routerLink]="['mock-list']" (click)="sidenav.toggle()" *ngIf="showMock"
+         routerLinkActive="is-active">
+        <mat-icon mat-list-icon>record_voice_over</mat-icon>
+        <span class="title" mat-line>Mock</span>
+      </a>
+
+      <a mat-list-item class="sidenav-link" [routerLink]="['alumini-list']" (click)="sidenav.toggle()"
+         *ngIf="showAlumini" routerLinkActive="is-active">
+        <mat-icon mat-list-icon>card_membership</mat-icon>
+        <span class="title" mat-line>Alumini        </span>
+      </a>
+      <h2 matSubheader class="h1" *ngIf="isAdmin"> Busy Admin </h2>
+      <a mat-list-item class="sidenav-link" [routerLink]="['admin']" (click)="sidenav.toggle()" *ngIf="isAdmin"
+         routerLinkActive="is-active">
+        <mat-icon mat-list-icon>rowing</mat-icon>
+        <span class="title" mat-line>Me Administration </span>
+      </a>
+
+      <a mat-list-item class="sidenav-link" [routerLink]="['location-list']" (click)="sidenav.toggle()" *ngIf="isAdmin"
+         routerLinkActive="is-active">
+        <mat-icon mat-list-icon>location_city</mat-icon>
+        <span class="title" mat-line>Locations</span>
+      </a>
+
+      <a mat-list-item class="sidenav-link" [routerLink]="['course-list']" (click)="sidenav.toggle()" *ngIf="isAdmin"
+         routerLinkActive="is-active">
+        <mat-icon mat-list-icon>import_contacts</mat-icon>
+        <span class="title" mat-line>Courses</span>
+      </a>
+
+      <a mat-list-item class="sidenav-link" [routerLink]="['trainer-list']" (click)="sidenav.toggle()" *ngIf="isAdmin"
+         routerLinkActive="is-active">
+        <mat-icon mat-list-icon>how_to_reg</mat-icon>
+        <span class="title" mat-line>Trainers</span>
+      </a>
+
+      <a mat-list-item class="sidenav-link" [routerLink]="['report-view']" (click)="sidenav.toggle()" *ngIf="isAdmin"
+      routerLinkActive="is-active">
+     <mat-icon mat-list-icon>timeline</mat-icon>
+     <span class="title" mat-line>Reports</span>
+   </a>
+
+      <a mat-list-item class="sidenav-link" [routerLink]="['batch-list']" (click)="sidenav.toggle()" *ngIf="isBatchView"
+         routerLinkActive="is-active">
+        <mat-icon mat-list-icon>group_add</mat-icon>
+        <span class="title" mat-line>Batches</span>
+      </a>
+
+      <h2 matSubheader class="h1" *ngIf="isPm"> Busy Manage </h2>
+      <a mat-list-item class="sidenav-link" [routerLink]="['admin']" (click)="sidenav.toggle()" *ngIf="isPm"
+         routerLinkActive="is-active">
+        <mat-icon mat-list-icon>how_to_reg</mat-icon>
+        <span class="title" mat-line>Me Managing </span>
+      </a>
+      <a mat-list-item class="sidenav-link" [routerLink]="['home']" (click)="sidenav.toggle()"
+         routerLinkActive="is-active">
+        <mat-icon mat-list-icon>account_balance</mat-icon>
+        <span class="title" mat-line>Home</span>
+      </a>
+
+      <a mat-list-item class="sidenav-link" [routerLink]="['clientpanel']" (click)="sidenav.toggle()"
+         routerLinkActive="is-active" *ngIf="isClientUser">
+        <mat-icon mat-list-icon>touch_app</mat-icon>
+        <span class="title" mat-line>Me BusyQA</span>
+      </a>
+
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-toolbar id="appToolbar" [ngClass]="{'toolbar-fullscreen': (fullscreen$ | async)}" class="toolbar-filler">
+
+    <button mat-icon-button (click)="sidenav.toggle()" class="mat-icon-button sidenav-toggle-button"
+            [hidden]="sidenav.opened" *ngIf="isLoggedIn">
+      <mat-icon mat-list-icon>all_inclusive</mat-icon>
+    </button>
+
+    <span class="toolbar-filler"></span>
+    <button mat-icon-button (click)="logout()" *ngIf="isLoggedIn">
+      <mat-icon mat-list-icon>power_settings_new</mat-icon>
+    </button>
+  </mat-toolbar>
+  <router-outlet></router-outlet>
+</mat-sidenav-container>
+
+<footer>
+  <img src="./assets/BusyQaCrm.png" width="250px"/>
+</footer>

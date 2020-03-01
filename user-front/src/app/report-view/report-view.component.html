@@ -1,0 +1,62 @@
+
+
+<div class="center-div">
+    <mat-card>Current Totals</mat-card>
+  <button mat-flat-button color="primary">Leads {{leadsCount}}</button>
+  <button mat-flat-button color="primary"> </button>
+  <button mat-flat-button color="accent">Student {{studentCount}}</button>
+  <button mat-flat-button color="primary"> </button>
+  <button mat-flat-button color="warn">Intern {{internCount}}</button>
+
+  <button mat-flat-button color="primary"> </button>
+  <button mat-flat-button color="primary">Mock {{mockCount}}</button>
+
+  <button mat-flat-button color="primary"> </button>
+  <button mat-flat-button color="accent">Alumini {{aluminiCount}}</button>
+
+  <button mat-flat-button color="primary"> </button>
+  <button mat-flat-button color="warn">Resume {{resumeCount}}</button>
+</div>
+
+
+          <div class="split left">
+              <div class="centered">
+                  <div style="height:400px;width:600px;"  *ngIf="isLoaded">
+                      <p><strong>@Now</strong></p>
+                      <canvas baseChart
+                        [data]="doughnutChartData"
+                        [labels]="doughnutChartLabels"
+                        [chartType]="doughnutChartType">
+                      </canvas>
+              </div>
+            </div>
+          </div>
+
+          <div class="split right">
+              <div class="centered">
+                  <div style="height:400px;width:600px;"  *ngIf="isLoaded">
+                      <p><strong>@Now ByCourse </strong></p>
+
+                  <canvas baseChart 
+            [datasets]="barChartData"
+            [labels]="barChartLabels"
+            [options]="barChartOptions"
+            [plugins]="barChartPlugins"
+            [legend]="barChartLegend"
+            [chartType]="barChartType">
+          </canvas>
+          <p><strong>@Now BySeason</strong></p>
+
+          <canvas baseChart 
+          [datasets]="barChartData2"
+          [labels]="barChartLabels2"
+          [options]="barChartOptions2"
+          [plugins]="barChartPlugins2"
+          [legend]="barChartLegend2"
+          [chartType]="barChartType2">
+        </canvas>
+              </div>
+            </div>
+          </div>
+
+

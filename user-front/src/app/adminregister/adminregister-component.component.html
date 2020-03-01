@@ -1,0 +1,100 @@
+<div *ngIf="isSignedUp; else signupForm">
+  Your registration is successful. Please login!
+</div>
+
+<ng-template #signupForm>
+  <div class="center-div">
+    <div class="row justify-content-md-center">
+      <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+        <div class="form-group">
+          <label for="firstName">Your First name</label>
+          <input type="text" class="form-control input-underline input-lg" name="firstName" [(ngModel)]="form.firstName"
+                 #firstName="ngModel" required/>
+          <div *ngIf="f.submitted && firstName.invalid">
+            <div *ngIf="firstName.errors.required">First Name is required</div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="lastName">Your Last name</label>
+          <input type="text" class="form-control input-underline input-lg" name="lastName" [(ngModel)]="form.lastName"
+                 #lastName="ngModel" required/>
+          <div *ngIf="f.submitted && lastName.invalid">
+            <div *ngIf="lastName.errors.required">Last Name is required</div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="username">Prefferred Username</label>
+          <input type="text" class="form-control input-underline input-lg" name="username" [(ngModel)]="form.username"
+                 #username="ngModel"
+                 required/>
+          <div *ngIf="f.submitted && username.invalid">
+            <div *ngIf="username.errors.required">Username is required</div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="text" class="form-control input-underline input-lg" name="email " [(ngModel)]="form.email"
+                 #email="ngModel" required email/>
+          <div *ngIf="f.submitted && email.invalid">
+            <div *ngIf="email.errors.required">Email is required</div>
+            <div *ngIf="email.errors.email">Email must be a valid email address</div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" class="form-control input-underline input-lg" name="password"
+                 [(ngModel)]="form.password" #password="ngModel"
+                 required minlength="8"/>
+          <div *ngIf="f.submitted && password.invalid">
+            <div *ngIf="password.errors.required">Password is required</div>
+            <div *ngIf="password.errors.minlength">Password must be at least 8 characters</div>
+          </div>
+        </div>
+
+        <div class="warning">
+          <p><strong>Editing A User?? </strong> "Editing a user would reset the role and team mapping, You might have to
+            reestablish the relationship" </p>
+        </div>
+        <div class="form-group">
+          <table class="table table-striped">
+            <thead>
+            <tr>
+              <th>Roles(Select Orderly)</th>
+              <th>Teams(Select Orderly)</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+              <td>
+                <ng-multiselect-dropdown class="form-control input-underline input-lg" name="roles"
+                                         [data]="dropdownList2" [(ngModel)]="form.roles" [settings]="dropdownSettings2"
+                                         (onSelect)="onItemSelect2($event)">
+                </ng-multiselect-dropdown>
+              </td>
+              <td>
+                <ng-multiselect-dropdown class="form-control input-underline input-lg" name="teams"
+                                         [data]="teamDropdownList2" [(ngModel)]="form.teams"
+                                         [settings]="teamDropdownSettings2" (onSelect)="onItemSelect2($event)">
+                </ng-multiselect-dropdown>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+
+
+        <div class="form-group">
+          <button class="rounded-btn3">Register</button>
+          <div *ngIf="f.submitted && isSignUpFailed" class="alert alert-warning">
+            Signup failed!<br/>{{errorMessage}}
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+</ng-template>

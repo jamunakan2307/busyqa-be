@@ -1,0 +1,112 @@
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=5">
+  <style>
+    div {
+      margin-bottom: 15px;
+      padding: 4px 12px;
+    }
+
+    .danger {
+      background-color: #ffdddd;
+      border-left: 6px solid #f44336;
+    }
+
+    .success {
+      background-color: #ddffdd;
+      border-left: 6px solid #4CAF50;
+    }
+
+    .info {
+      background-color: #e7f3fe;
+      border-left: 6px solid #2196F3;
+    }
+
+    .warning {
+      background-color: #ffffcc;
+      border-left: 6px solid #ffeb3b;
+    }
+  </style>
+</head>
+
+<div class="center-div">
+    <button mat-button (click)="back()">
+        <mat-icon>skip_previous</mat-icon>
+        Back
+    </button>
+  <div class="row justify-content-md-center"><h2 class="text-center">Edit Alumini</h2>
+
+    <form [formGroup]="editForm" (ngSubmit)="onSubmit()">
+      <div class="hidden">
+        <input type="text" formControlName="id" placeholder="id" name="id" class="form-control input-underline input-lg"
+               id="id">
+      </div>
+      <div class="form-group">
+        <label for="firstName">First Name:</label>
+        <input type="text" formControlName="firstName" placeholder="firstName" name="firstName"
+               class="form-control input-underline input-lg" id="firstName" readonly="true">
+      </div>
+      <div class="form-group">
+        <label for="lastName">Last Name:</label>
+        <input type="text" formControlName="lastName" placeholder="lastName" name="lastName"
+               class="form-control input-underline input-lg" id="lastName" readonly="true">
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email :</label>
+        <input type="text" formControlName="email" placeholder="email" name="email"
+               class="form-control input-underline input-lg" id="email" readonly="true">
+      </div>
+      <div class="form-group">
+        <label for="phoneNumber">Phone Number:</label>
+        <input type="text" formControlName="phoneNumber" placeholder="phoneNumber" name="phoneNumber"
+               class="form-control input-underline input-lg" id="phoneNumber" readonly="true">
+      </div>
+      <div class="form-group">
+        <label for="placementStatus">Placement Status :</label>
+        <input type="text" formControlName="placementStatus" placeholder="placementStatus" name="placementStatus"
+               class="form-control input-underline input-lg" id="placementStatus">
+      </div>
+
+      <div class="form-group">
+        <label for="companyName">Company Name :</label>
+        <input type="text" formControlName="companyName" placeholder="companyName" name="companyName"
+               class="form-control input-underline input-lg" id="companyName">
+      </div>
+      <div class="form-group">
+        <label for="aluminiDesignation">Alumini Designation :</label>
+        <input type="text" formControlName="aluminiDesignation" placeholder="aluminiDesignation"
+               name="aluminiDesignation" class="form-control input-underline input-lg" id="aluminiDesignation">
+      </div>
+      <div class="form-group">
+        <label for="aluminiComments">Alumini comments :</label>
+        <input type="text" formControlName="aluminiComments" placeholder="aluminiComments" name="aluminiComments"
+               class="form-control input-underline input-lg" id="aluminiComments">
+      </div>
+
+      <div class="form-group ">
+        <label for="employementType">Employement Status : </label>
+        <select class="form-control input-underline input-lg" formControlName="employementType"
+                placeholder="employementType" name="employementType" class="form-control input-underline input-lg"
+                id="employementType">
+          <option value="FULL TIME">Full Time</option>
+          <option value="CONTRACT">Contract</option>
+          <option value="PAID COOP"> Paid Coop</option>
+        </select>
+      </div>
+
+
+      <div class="hidden">
+        <label for="clientStatus">Client Status: </label>
+        <select class="form-control input-underline input-lg" formControlName="clientStatus" placeholder="clientStatus"
+                name="clientStatus" class="clientStatus" id="clientStatus" readonly="true">
+          <option value="ALUMINI">ALUMINI</option>
+        </select>
+      </div>
+      <button mat-button>
+        <mat-icon>fingerprint</mat-icon>
+        Update Alumini
+      </button>
+
+    </form>
+  </div>
+</div>

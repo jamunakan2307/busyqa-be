@@ -1,0 +1,73 @@
+body {
+  background-color: #FFFFFF;
+}
+
+.center-div {
+  top: 15%;
+  bottom: 0;
+  left: 40%;
+  padding-left: 150px;
+  right: 0;
+  text-align: left;
+  color: #414141;
+  font-size: 16px;
+}
+
+input-lg {
+  top: 15%;
+  text-align: center;
+  padding-left: 50px;
+  height: 40px;
+  left: 40%;
+  padding: 10px 16px;
+  font-size: 16px;
+  line-height: 1.3333333;
+  border-radius: 0;
+  width: 450px;
+}
+
+.input-underline {
+  background: 0 0;
+  border: none;
+  text-align: center;
+  left: 40%;
+  padding-left: 50px;
+  box-shadow: none;
+  border-bottom: 2px solid #58dbc1;
+  color: gb(112, 24, 24);
+  border-radius: 10;
+  width: 550px;
+}
+
+.input-underline:focus {
+  border-bottom: 2px solid #58dbc1;
+  box-shadow: none;
+  width: 350px;
+  left: 40%;
+  padding-left: 50px;
+}
+
+.rounded-btn {
+  -webkit-border-radius: 125px;
+  border-radius: 80px;
+  color: #e5e7e5;
+  background: #58dbc1;
+  border: 2px solid #58dbc1;
+  font-size: 18px;
+  line-height: 30px;
+  padding: 0 12px;
+}
+
+.rounded-btn:hover,
+.rounded-btn:focus,
+.rounded-btn:active,
+.rounded-btn:visited {
+  -webkit-border-radius: 125px;
+  border-radius: 80px;
+  color: #e5e7e5;
+  background: #58dbc1;
+  border: 2px solid #58dbc1;
+  font-size: 18px;
+  line-height: 30px;
+  padding: 0 12px;
+}

@@ -1,0 +1,113 @@
+<div class="center-div">
+  <div class="row justify-content-md-center">
+    <h1 class="text-center"><h1> {{clients.firstName}} {{clients.lastName}} </h1></h1>
+
+    <h4 class="text-center"><h4>Course :: {{clients.courseName}} Duration :: {{clients.courseLenght}} (weeks) Start
+      Date::{{clients.startDate}} EndDate::{{clients.endDate}} Total Amount:: ${{clients.totalCourseAmount}} CAD</h4>
+    </h4>
+
+    <form [formGroup]="editForm">
+
+      <div class="hidden">
+        <input type="text" formControlName="id" placeholder="id" name="id" class="form-control input-underline input-lg"
+               id="id">
+      </div>
+
+      <div class="form-group">
+        <label for="clientStatus">Client Status: </label>
+        <input type="text" class="form-control input-underline input-lg" formControlName="clientStatus"
+               placeholder="clientStatus" name="clientStatus" class="form-control input-underline input-lg"
+               id="clientStatus" readonly="true">
+      </div>
+      <div class="form-group">
+        <label for="paymentPlan">Payment Plan: </label>
+        <select class="form-control input-underline input-lg" formControlName="paymentPlan" placeholder="paymentPlan"
+                name="paymentPlan" class="form-control input-underline input-lg" id="paymentPlan" readonly="false">
+          <option value="One_Time_Credit_Card" selected>One Time - Credit Card</option>
+          <option value="One_Time_Debit_Card_Cash">One Time - Debit Card/Cash</option>
+          <option value="One_Time_Email_transfer,Automated_Weekly">One Time - Email MoneyO</option>
+          <option value="Automated_Weekly">Automated Weekly</option>
+          <option value="Automated_Bi_Weekly">Automated Bi-weekly</option>
+          <option value="Automated_Monthly">Automated Monthly</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="registrationFees" >Registration Fees [$CAD]</label>
+        <input type="text" class="form-control input-underline input-lg" formControlName="registrationFees"
+               placeholder="registrationFees" name="registrationFees" class="form-control input-underline input-lg"
+               id="registrationFees" readonly="true">
+      </div>
+      
+      <div class="form-group">
+        <label for="totaDiscountAmount">Total Discount Amount [$CAD]</label>
+        <input type="text" class="form-control input-underline input-lg" formControlName="totaDiscountAmount"
+               placeholder="totaDiscountAmount" name="totaDiscountAmount" class="form-control input-underline input-lg"
+               id="totaDiscountAmount">
+      </div>
+      <div class="form-group">
+        <label for="paymentStatus">Payment Status: </label>
+        <select class="form-control input-underline input-lg" formControlName="paymentStatus"
+                placeholder="paymentStatus" name="paymentStatus" class="form-control input-underline input-lg"
+                id="paymentStatus" readonly="false">
+          <option value="ON_SCHEDULE" selected>ON SCHEDULE</option>
+          <option value="DUE_FOR_A_WEEK">DUE FOR A WEEK</option>
+          <option value="SERIOUS_OVER_DUE">SERIOUS OVER DUE</option>
+          <option value="UNSCHEDULED">UNSCHEDULED</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="anchorDate">Payment Anchor Date </label>
+        <input type="date" formControlName="anchorDate" placeholder="anchorDate" name="anchorDate"
+               class="form-control input-underline input-lg" id="anchorDate">
+
+      </div>
+      <button mat-button (click)="onPopulatePayment()">
+        <mat-icon>autorenew</mat-icon>
+        Populate Payments
+      </button>
+
+
+      <button mat-button (click)="onSubmit()">
+        <mat-icon>euro_symbol</mat-icon>
+        Confirm Payment Setup
+      </button>
+
+      <button mat-button (click)="onPayment()">
+        <mat-icon>monetization_on</mat-icon>
+        Add Payment
+      </button>
+    </form>
+  </div>
+</div>
+<div *ngIf="showPayment">
+  <h4>Calculated Payment Details </h4>
+</div>
+<table class="table table-striped" *ngIf="showPayment">
+  <thead>
+  <tr>
+    <th class="hidden">Id</th>
+    <th>Amount Paid [$CAD]</th>
+    <th>Scheduled Amount [$CAD]</th>
+    <th>Net Course Amount</th>
+    <th>Payment Date</th>
+    <th>Scheduled Payment Date</th>
+    <th>PaymentNotes</th>
+    <th>Status</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let payment of payments">
+    <td class="hidden">{{payment.id}}</td>
+    <td>{{payment.amountPaid}}</td>
+    <td>{{payment.weeklyAmountPaid}}</td>
+    <td>{{payment.totalAmount}}</td>
+    <td>{{payment.paymentDate}}</td>
+    <td>{{payment.scheduledPaymentDate}}</td>
+    <td>{{payment.paymentNotes}}</td>
+    <td>{{payment.recordStatus}}</td>
+  </tr>
+  </tbody>
+</table>
+{{errorMessage}}

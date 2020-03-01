@@ -1,0 +1,57 @@
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+      div {
+        margin-bottom: 15px;
+        padding: 4px 12px;
+        text-indent: 10%;
+  
+      }
+  
+      .warning {
+        background-color: #ffffcc;
+        border-left: 6px solid #ffeb3b;
+        text-indent: 10%;
+      }
+    </style>
+  </head>
+  <div class="center-div">
+      <h4>BusyQa Locations</h4>
+    </div>
+    <button class="rounded-btn3" style="width:150px" (click)="addLocation()"> + Location</button>
+    <input class="form-control input-underline input-lg" type="text" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder="Search">
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th class="hidden">Id</th>
+      <th>Location Name</th>
+      <th>Description</th>
+      <th>address</th>
+      <th>City</th>
+      <th>State</th>
+      <th>Country</th>
+      <th>zipCode</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let location of locations | filter:searchText">
+      <td class="hidden">{{location.id}}</td>
+      <td>{{location.locationName}}</td>
+      <td>{{location.description}}</td>
+      <td>{{location.address}}</td>
+      <td>{{location.city}}</td>
+      <td>{{location.state}}</td>
+      <td>{{location.country}}</td>
+      <td>{{location.zipCode}}</td>
+
+      <td>
+        <button mat-button (click)="editLocation(location)">
+          <mat-icon>edit_location</mat-icon>
+          Edit
+        </button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+  {{errorMessage}}
+  

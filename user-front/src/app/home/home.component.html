@@ -1,0 +1,43 @@
+
+
+<div class="App">
+  <aside class="sidebar" *ngIf="isLoggedIn">
+    <section *ngIf="isLoggedIn" class="join-chat">
+      <h1>Join Chat</h1>
+      <form (ngSubmit)="addUser()">
+        <input placeholder="Enter your username" class="input-underline input-lg" type="text" name="username"
+               [(ngModel)]="username"/>
+      </form>
+    </section>
+    <section class="online-members" *ngIf="isLoggedIn">
+      <h1>Room Users</h1>
+      <ul class="user-list">
+        <li *ngFor="let user of users">
+          <span class="presence {{ user.presence.state }}"></span>
+          <span>{{ user.name }}</span>
+        </li>
+      </ul>
+    </section>
+  </aside>
+
+  <main class="chat-window" *ngIf="isLoggedIn">
+    <header class="chat-header" *ngIf="isLoggedIn">
+      <h1>Chat</h1>
+      <span class="participants"></span>
+    </header>
+    <section class="chat-session" *ngIf="isLoggedIn">
+      <ul class="message-list">
+        <li class="user-message" *ngFor="let message of messages">
+          <span class="user-id">{{ message.senderId }}</span>
+          <span>{{ message.text }}</span>
+        </li>
+      </ul>
+    </section>
+    <footer class="chat-footer" *ngIf="isLoggedIn">
+      <form (ngSubmit)='sendMessage()'>
+        <input placeholder="Type a message. Hit Enter to send" class="input-underline input-lg" type="text"
+               name="message" [(ngModel)]="message">
+      </form>
+    </footer>
+  </main>
+</div>

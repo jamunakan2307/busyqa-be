@@ -1,0 +1,32 @@
+<div>
+  <h4>Payment Details : {{payment.user.firstName}} {{payment.user.lastName}} </h4>
+</div>
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th class="hidden">Id</th>
+    <th>Amount Paid [$CAD]</th>
+    <th>Scheduled Amount [$CAD]</th>
+    <th>Net Course Amount</th>
+    <th>Payment Date</th>
+    <th>Scheduled Payment Date</th>
+    <th>PaymentNotes</th>
+    <th>New Total Amount [$CAD]</th>
+    <th>Status</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let payment of payments">
+    <td class="hidden">{{payment.id}}</td>
+    <td>{{payment.amountPaid}}</td>
+    <td>{{payment.weeklyAmountPaid}}</td>
+    <td>{{payment.totalAmount}}</td>
+    <td>{{payment.paymentDate}}</td>
+    <td>{{payment.scheduledPaymentDate}}</td>
+    <td>{{payment.paymentNotes}}</td>
+    <td>{{payment.differenceAmount}}</td>
+    <td>{{payment.recordStatus}}</td>
+
+  </tr>
+  </tbody>
+</table>

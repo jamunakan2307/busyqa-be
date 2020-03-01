@@ -1,0 +1,119 @@
+<mat-tab-group>
+<div class="center-div">
+  <h4>BusyQa Batch Center</h4>
+<input class="form-control input-underline input-lg" type="text" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder="Search">
+</div>
+
+<mat-tab label="Scheduled Batches">  
+<table class="table table-striped" >
+  <thead>
+  <tr>
+    <th class="hidden">Id</th>
+    <th>Course Name</th>
+    <th>Trainer Name</th>
+    <th>Start Date</th>
+    <th>End Date</th>
+    <th>Location</th>
+    <th>Registration Fees</th>
+    <th>Tax Percentage[%]</th>
+    <th>Total Course Amount[$CAD]</th>
+    <th>Seaon</th>
+    <th>Course Duratioin [Weeks]</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let schedule of scheduleds | filter:searchText">
+    <td class="hidden">{{schedule.id}}</td>
+    <td>{{schedule.courseName}}</td>
+    <td>{{schedule.trainerName}}</td>
+    <td>{{schedule.startDate}}</td>
+    <td>{{schedule.endDate}}</td>
+    <td>{{schedule.courseLocation}}</td>
+    <td>{{schedule.registrationFees}}</td>
+    <td>{{schedule.taxPercentage}}</td>
+    <td>{{schedule.netCourseAmount}}</td>
+    <td>{{schedule.season}}</td>
+    <td>{{schedule.courseLenght}}</td>
+
+    <td>
+      <button mat-button (click)="editBatch(schedule)">
+        <mat-icon>edit</mat-icon>
+        Edit
+      </button>
+  </tr>
+  </tbody>
+  <button mat-button (click)="addBatch()">
+    <mat-icon>loupe</mat-icon>
+    Add Batch
+  </button>
+
+</table>
+</mat-tab>
+<mat-tab label="Ongoing Batches">  
+<table class="table table-striped" >
+  <thead>
+  <tr>
+    <th class="hidden">Id</th>
+    <th>Course Name</th>
+    <th>Trainer Name</th>
+    <th>Start Date</th>
+    <th>End Date</th>
+    <th>Location</th>
+    <th>Tax Percentage[%]</th>
+    <th>Total Course Amount[$CAD]</th>
+    <th>Course Duratioin [Weeks]</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let ongoing of ongoings | filter:searchText">
+    <td class="hidden">{{ongoing.id}}</td>
+    <td>{{ongoing.courseName}}</td>
+    <td>{{ongoing.trainerName}}</td>
+    <td>{{ongoing.startDate}}</td>
+    <td>{{ongoing.endDate}}</td>
+    <td>{{ongoing.courseLocation}}</td>
+    <td>{{ongoing.taxPercentage}}</td>
+    <td>{{ongoing.netCourseAmount}}</td>
+    <td>{{ongoing.courseLenght}}</td>
+    <td>
+      <button class="rounded-btn3" (click)="editBatch(ongoing)" style="margin-left: 20px;"> Edit Batch</button>
+    </td>
+  </tr>
+  </tbody>
+</table>
+</mat-tab>
+
+<mat-tab label="Completed Batches">  
+
+<table class="table table-striped" >
+  <thead>
+  <tr>
+    <th class="hidden">Id</th>
+    <th>Course Name</th>
+    <th>Trainer Name</th>
+    <th>Start Date</th>
+    <th>End Date</th>
+    <th>Location</th>
+    <th>Tax Percentage[%]</th>
+    <th>Total Course Amount[$CAD]</th>
+    <th>Course Duratioin [Weeks]</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let completed of completeds | filter:searchText">
+    <td class="hidden">{{completed.id}}</td>
+    <td>{{completed.courseName}}</td>
+    <td>{{completed.trainerName}}</td>
+    <td>{{completed.startDate}}</td>
+    <td>{{completed.endDate}}</td>
+    <td>{{completed.courseLocation}}</td>
+    <td>{{completed.taxPercentage}}</td>
+    <td>{{completed.netCourseAmount}}</td>
+    <td>{{completed.courseLenght}}</td>
+  </tr>
+  </tbody>
+</table>
+</mat-tab>
+</mat-tab-group>
+{{errorMessage}}
+  

@@ -1,0 +1,49 @@
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    div {
+      margin-bottom: 15px;
+      padding: 4px 12px;
+      text-indent: 10%;
+
+    }
+
+    .warning {
+      background-color: #ffffcc;
+      border-left: 6px solid #ffeb3b;
+      text-indent: 10%;
+    }
+  </style>
+</head>
+<div class="center-div">
+    <h4>BusyQa Courses</h4>
+  </div>
+  <button class="rounded-btn3" style="width:150px" (click)="addCourse()"> + Course</button>
+  <input class="form-control input-underline input-lg" type="text" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder="Search">
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th class="hidden">Id</th>
+    <th>Course Name</th>
+    <th>Course Amount[$CAD]</th>
+    <th>Course Length[Weeks]</th>
+    <th>Status</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let course of courses | filter:searchText">
+    <td class="hidden">{{course.id}}</td>
+    <td>{{course.courseName}}</td>
+    <td>{{course.courseAmount}}</td>
+    <td>{{course.courseLenght}}</td>
+    <td>{{course.status}}</td>
+    <td>
+      <button mat-button (click)="editCourse(course)">
+        <mat-icon>edit</mat-icon>
+        Edit
+      </button>
+    </td>
+  </tr>
+  </tbody>
+</table>
+{{errorMessage}}

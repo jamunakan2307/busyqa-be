@@ -1,0 +1,74 @@
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    div {
+      margin-bottom: 15px;
+      padding: 4px 12px;
+      text-indent: 10%;
+
+    }
+
+    .warning {
+      background-color: #ffffcc;
+      border-left: 6px solid #ffeb3b;
+      text-indent: 10%;
+    }
+  </style>
+</head>
+<div class="center-div">
+  <h4>Me Administration</h4>
+</div>
+
+
+<button class="rounded-btn3" (click)="addUser()"> Add Internal User</button>
+
+<button class="rounded-btn3" (click)="addClientUser()"> Add New Client</button>
+<input class="form-control input-underline input-lg" type="text" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder="Search">
+
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th class="hidden">Id</th>
+    <th>First Name</th>
+    <th>Last Name</th>
+    <th>Username</th>
+    <th>E-mail</th>
+    <th>Roles</th>
+    <th>Teams</th>
+    <th>Active?</th>
+    <th>Status As Of Date</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let user of users | filter:searchText">
+    <td class="hidden">{{user.id}}</td>
+    <td>{{user.firstName}}</td>
+    <td>{{user.lastName}}</td>
+    <td>{{user.username}}</td>
+    <td>{{user.email}}</td>
+    <td>{{user.roles}}</td>
+    <td>{{user.teams}}</td>
+    <td>{{user.status}}</td>
+    <td>{{user.statusAsOfDay | date:"MM/dd/yyy:HH:mm"}}</td>
+    <td>
+      <button mat-button (click)="deleteUser(user)">
+        <mat-icon>delete</mat-icon>
+        Delete
+      </button>
+      <button mat-button (click)="editUser(user)">
+        <mat-icon>edit</mat-icon>
+        Edit
+      </button>
+    </td>
+  </tr>
+  </tbody>
+</table>
+{{errorMessage}}
+<footer>
+  <div class="center-div2">
+    <p><strong>Info !</strong> Below are the personas of user associated with team and role </p>
+    <p><strong>Editing A User?? </strong> "Editing a user would reset the role and team mapping, You might have to
+      reestablish the relationship" </p>
+    <p><strong>Deleiting A Client User?? </strong> "Please Naviaget to Client Panel" </p>
+  </div>
+</footer>

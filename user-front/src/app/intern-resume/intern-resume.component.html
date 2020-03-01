@@ -1,0 +1,16 @@
+<div class="info">
+  <p><strong>Welcome to busyQA Secure Resume Uploader. </strong></p>
+</div>
+
+<div>
+
+
+  <input #fileInput type="file" ng2FileSelect [uploader]="uploader" required fileInput/>
+
+  <div class="drop-box" ng2FileDrop
+       [ngClass]="{'dragover': isDropOver}"
+       [uploader]="uploader"
+       (fileOver)="fileOverAnother($event)"
+       (click)="fileClicked()">
+  </div>
+</div>

@@ -1,0 +1,55 @@
+
+<div class="center-div">
+  <h4>Students</h4>
+
+</div>
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th class="hidden">Id</th>
+    <th>First Name</th>
+    <th>Course</th>
+    <th>Payment Plan</th>
+    <th>Payment Status</th>
+    <th>Calculated Course Amount : </th>
+    <th>Registration fees: </th>
+    <th>Total Paid Amount :</th>
+    <th>Last Payment Date :</th>
+    <th>E-mail</th>
+    <th>Contact Phone Number:</th>
+
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let user of users">
+    <td class="hidden">{{user.id}}</td>
+    <td>{{user.firstName}}</td>
+    <td>{{user.courseName}}</td>
+    <td>{{user.paymentPlan}}</td>
+    <td>{{user.paymentStatus}}</td>
+    <td>{{user.totalCourseAmountAfterDiscount}}</td>
+    <td>{{user.registrationFees}}</td>
+    <td>{{user.amountPaid}}</td>
+    <td>{{user.lastPaymentTimeStamp | date:"MM/dd/yyy:HH:mm"}}</td>
+    <td>{{user.email}}</td>
+    <td>{{user.phoneNumber}}</td>
+    <td>
+       <button mat-button (click)="approveStudent(user)">
+        <mat-icon>touch_app</mat-icon>
+        Approve
+      </button>
+      <button mat-button (click)="editUser2(user)">
+        <mat-icon>play_circle_outline</mat-icon>
+        PayMent Hub
+      </button>
+    </td>
+  </tr>
+  </tbody>
+</table>
+{{errorMessage}}
+<footer>
+  <div class="center-div2">
+    <p><strong> Use 'View /Add Payments' Button to add and review payment history</strong></p>
+    <p><strong>Use 'Edit Payment Setup' tp change student statue or payment plan </strong></p>
+  </div>
+</footer>

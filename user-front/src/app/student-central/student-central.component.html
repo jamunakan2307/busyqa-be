@@ -1,0 +1,324 @@
+<button mat-button (click)="back()">
+    <mat-icon>skip_previous</mat-icon>
+    Back
+</button>
+
+        <h4> {{clients.firstName}} {{clients.lastName}} </h4>
+
+<mat-tab-group>
+  <mat-tab label="Profile">  
+    <div class="center-div">
+      <div>
+        <div>
+          <label><h1>UserName : <strong>{{clients.username}}</strong></h1></label>
+        </div>
+        <div>
+          <label><h1>Reach Me @ : 
+         <strong>{{clients.email}}, #{{clients.phoneNumber}}</strong>, Emrgency Phone: <strong>{{clients.emergencyPhoneNumber}}</strong></h1></label>
+        </div>
+        <div>
+          <label><h1>Contact Details : 
+            <strong>{{clients.address}},{{clients.city}},{{clients.state}}, {{clients.country}}, {{clients.zipCode}}</strong></h1></label>
+        </div>
+      
+      </div>
+      <div class="center-div">
+        <h4>My Registration Details</h4>
+      </div>
+
+        <div>
+          <label>
+            <h1><p>Employed? : <strong>{{clients.currentlyEmployed}} </strong></p>
+              <p>Whether in Tech Industry : <strong>{{clients.currentlyTechIndustry}}</strong></p>
+              <p>Current Job : <strong>{{clients.currentJob}}</strong></p>
+              <p>Desired Job : <strong>{{clients.desriredJob}}</strong></p>
+              <p>Lead Source By : <strong>{{clients.leadSource}}</strong></p>
+              <p>MyOpinion : <strong>{{clients.studentComments}}</strong></p>
+            </h1>
+          </label>
+        </div>
+
+      <div class="center-div">
+        <h4>My Course Details</h4>
+      </div>
+      
+      <div>
+        <div>
+          <label>
+            <h1><p>Course: <strong>{{clients.courseName}}</strong></p>
+              <p>Duration: <strong>{{clients.courseLenght}}(weeks)</strong></p>
+              <p>Course Start Date <strong>{{clients.startDate}}</strong></p>
+              <p>Location: <strong>{{clients.courseLocation}}</strong></p>
+            </h1>
+          </label>
+        </div>
+      </div>
+      
+      <div class="center-div">
+        <h4>My Payment Details</h4>
+      </div>
+      
+      <div>
+        <div>
+          <label>
+            <h1><p>PaymentPlan: <strong>{{clients.paymentPlan}}</strong></p>
+              <p>Payment Status: <strong>{{clients.paymentStatus}}</strong></p>
+            </h1>
+          </label>
+        </div>
+      </div>
+    </div>
+  </mat-tab>
+
+  <mat-tab label="Change Status" > 
+      <div class="center-div">
+           
+                <h1 class="text-center"><h1>Course :: <strong>{{clients.courseName}}</strong>,  Duration :: <strong>{{clients.courseLenght}}</strong> (weeks) Start
+                  Date:: <strong>{{clients.startDate}} </strong> EndDate:: <strong>{{clients.endDate}}</strong> Total Amount:: <strong>${{clients.totalCourseAmount}} CAD </strong></h1>
+                </h1>
+            
+                <form [formGroup]="editForm">
+            
+                  <div class="hidden">
+                    <input type="text" formControlName="id" placeholder="id" name="id" class="form-control input-underline input-lg"
+                           id="id">
+                  </div>
+            
+                  <div class="form-group">
+                    <label for="clientStatus">Client Status: </label>
+                    <input type="text" class="form-control input-underline input-lg" formControlName="clientStatus"
+                           placeholder="clientStatus" name="clientStatus" class="form-control input-underline input-lg"
+                           id="clientStatus" readonly="true">
+                  </div>
+                  <div class="form-group">
+                    <label for="paymentPlan">Payment Plan: </label>
+                    <input type="text" class="form-control input-underline input-lg" formControlName="paymentPlan"
+                           placeholder="paymentPlan" name="paymentPlan" class="form-control input-underline input-lg"
+                           id="paymentPlan" readonly="true">
+            
+                  </div>
+                  <div class="form-group">
+                    <label for="totaDiscountAmount">Total Discount Amount [$CAD]</label>
+                    <input type="text" class="form-control input-underline input-lg" formControlName="totaDiscountAmount"
+                           placeholder="totaDiscountAmount" name="totaDiscountAmount" class="form-control input-underline input-lg"
+                           id="totaDiscountAmount">
+            
+                  </div>
+                  <div class="form-group">
+                    <label for="paymentStatus">Payment Status: </label>
+                    <select class="form-control input-underline input-lg" formControlName="paymentStatus"
+                            placeholder="paymentStatus" name="paymentStatus" class="form-control input-underline input-lg"
+                            id="paymentStatus" readonly="false">
+                      <option value="ON_SCHEDULE" selected>ON SCHEDULE</option>
+                      <option value="DUE_FOR_A_WEEK">DUE FOR A WEEK</option>
+                      <option value="SERIOUS_OVER_DUE">SERIOUS OVER DUE</option>
+                      <option value="UNSCHEDULED">UNSCHEDULED</option>
+                    </select>
+                  </div>
+            
+                  <div class="hidden">
+                    <div class="form-group">
+                      <label for="anchorDate">Payment Anchor Date </label>
+                      <input type="date" formControlName="anchorDate" placeholder="anchorDate" name="anchorDate"
+                             class="form-control input-underline input-lg" id="anchorDate">
+            
+                    </div>
+                  </div>
+                  <button mat-button (click)="onSubmit4()">
+                    <mat-icon>swap_calls</mat-icon>
+                    Update Setup
+                  </button>
+                </form>
+            </div>
+</mat-tab>
+
+  <mat-tab label = "Make Payment">
+      <div class="center-div">
+               <h1> Payment Towards : <strong> {{payments.scheduledPaymentDate}}</strong></h1>
+            
+                <form [formGroup]="editForm2" (ngSubmit)="onSubmit()">
+                  <div class="hidden">
+                    <input type="text" formControlName="id" placeholder="id" name="id" class="form-control input-underline input-lg"
+                           id="id">
+                  </div>
+                  <div class="form-group">
+                    <label for="amountPaid"><h1>Amount[$CAD]</h1></label>
+                    <input type="text" formControlName="amountPaid" placeholder="amountPaid" name="amountPaid"
+                           class="form-control input-underline input-lg" id="amountPaid">
+                  </div>
+                  <div class="form-group">
+                    <label for="weeklyAmountPaid"><h1>Scheduled Payment Amount[$CAD] [Read Only]</h1></label>
+                    <input type="text" formControlName="weeklyAmountPaid" placeholder="weeklyAmountPaid" name="weeklyAmountPaid"
+                           class="form-control input-underline input-lg" id="weeklyAmountPaid" readonly="true">
+                  </div>
+                  <div class="form-group">
+                 <label for="paymentMode"><h1>Payment Mode <strong>*[If Credit/Debit Selected 3% charges applied]</strong></h1></label>
+                  <select formControlName="paymentMode" placeholder="paymentMode" name="paymentMode"
+                  class="form-control input-underline input-lg" id="paymentMode">
+                  <option value="Cash">Cash</option>
+                  <option value="Credit/Debit">Credit/Debit</option>
+                  </select>
+                </div>
+
+                  <div class="form-group">
+                    <label for="paymentNotes"><h1>Payment Notes</h1></label>
+                    <input type="text" formControlName="paymentNotes" placeholder="paymentNotes" name="paymentNotes"
+                           class="form-control input-underline input-lg" id="paymentNotes">
+                  </div>
+                  <button class="rounded-btn3" (click)="onSubmit2()"> Update</button>
+                </form>
+              </div>
+</mat-tab>
+  <mat-tab label="View Payment Transactions">
+      <div class="center-div">
+      <table class="table table-striped">
+          <thead>
+          <tr>
+            <th class="hidden">Id</th>
+            <th><h1>Amount Paid [$CAD]</h1></th>
+            <th><h1>Scheduled Amount [$CAD]</h1></th>
+            <th><h1>Net Course Amount [$CAD]</h1></th>
+            <th><h1>Payment Date</h1></th>
+            <th><h1>Scheduled Payment Date</h1></th>
+            <th><h1>PaymentNotes</h1></th>
+            <th><h1>New Total Amount [$CAD]</h1></th>
+            <th><h1>Mode Of Payment</h1></th>
+            <th><h1>Status</h1></th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let payment1 of payments1">
+            <td class="hidden">{{payment1.id}}</td>
+            <td>{{payment1.amountPaid}}</td>
+            <td>{{payment1.weeklyAmountPaid}}</td>
+            <td>{{payment1.totalAmount}}</td>
+            <td>{{payment1.paymentDate}}</td>
+            <td>{{payment1.scheduledPaymentDate}}</td>
+            <td>{{payment1.paymentNotes}}</td>
+            <td>{{payment1.differenceAmount}}</td>
+            <td>{{payment1.paymentMode}}</td>
+            <td>{{payment1.recordStatus}}</td>
+        
+          </tr>
+          </tbody>
+        </table>
+      </div>
+
+  </mat-tab>
+
+  <mat-tab label="Reset Payment Setup" > 
+      <div class="center-div">
+
+     <h1 class="text-center"><h1>Course :: <strong>{{clients.courseName}} </strong>, Duration :: <strong>{{clients.courseLenght}} (weeks)</strong> , Start
+       Date:: <strong>{{clients.startDate}}</strong>, EndDate:: <strong>{{clients.endDate}}</strong>,  Total Amount:: <strong>${{clients.totalCourseAmount}} CAD</strong></h1>
+     </h1>
+ 
+     <form [formGroup]="editForm3">
+ 
+       <div class="hidden">
+         <input type="text" formControlName="id" placeholder="id" name="id" class="form-control input-underline input-lg"
+                id="id">
+       </div>
+ 
+       <div class="form-group">
+         <label for="clientStatus">Client Status: </label>
+         <select class="form-control input-underline input-lg" formControlName="clientStatus" placeholder="clientStatus"
+                 name="clientStatus" class="form-control input-underline input-lg" id="clientStatus" readonly="false">
+           <option value="INTERN">INTERN</option>
+           <option value="ALUMINI">ALUMINI</option>
+           <option value="STUDENT" selected>STUDENT</option>
+         </select>
+       </div>
+       <div class="form-group">
+         <label for="paymentPlan" >Payment Plan: </label>
+         <select class="form-control input-underline input-lg" formControlName="paymentPlan" placeholder="paymentPlan"
+                 name="paymentPlan" class="form-control input-underline input-lg" id="paymentPlan" readonly="false"
+                 >
+           <option value="One_Time_Credit_Card" selected>One Time - Credit Card</option>
+           <option value="One_Time_Debit_Card_Cash">One Time - Debit Card/Cash</option>
+           <option value="One_Time_Email_transfer,Automated_Weekly">One Time - Email MoneyO</option>
+           <option value="Automated_Weekly">Automated Weekly</option>
+           <option value="Automated_Bi_Weekly">Automated Bi-weekly</option>
+           <option value="Automated_Monthly">Automated Monthly</option>
+         </select>
+       </div>
+       <div class="form-group">
+         <label for="totaDiscountAmount" *ngIf="paySetupCheck">Total Discount Amount [$CAD]</label>
+         <input type="text" class="form-control input-underline input-lg" formControlName="totaDiscountAmount"
+                placeholder="totaDiscountAmount" name="totaDiscountAmount" class="form-control input-underline input-lg"
+                id="totaDiscountAmount" *ngIf="paySetupCheck">
+       </div>
+ 
+       <div class="form-group">
+         <label for="registrationFees" *ngIf="paySetupCheck">Registration Fees [$CAD]</label>
+         <input type="text" class="form-control input-underline input-lg" formControlName="registrationFees"
+                placeholder="registrationFees" name="registrationFees" class="form-control input-underline input-lg"
+                id="registrationFees" *ngIf="paySetupCheck" readonly="true">
+       </div>
+ 
+ 
+       <div class="form-group">
+         <label for="paymentStatus">Payment Status: </label>
+         <select class="form-control input-underline input-lg" formControlName="paymentStatus"
+                 placeholder="paymentStatus" name="paymentStatus" class="form-control input-underline input-lg"
+                 id="paymentStatus" readonly="false">
+           <option value="ON_SCHEDULE" selected>ON SCHEDULE</option>
+           <option value="DUE_FOR_A_WEEK">DUE FOR A WEEK</option>
+           <option value="SERIOUS_OVER_DUE">SERIOUS OVER DUE</option>
+           <option value="UNSCHEDULED">UNSCHEDULED</option>
+         </select>
+       </div>
+ 
+       <div class="form-group">
+         <label for="anchorDate" *ngIf="paySetupCheck">Payment Anchor Date </label>
+         <input type="date" formControlName="anchorDate" placeholder="anchorDate" name="anchorDate"
+                class="form-control input-underline input-lg" id="anchorDate">
+ 
+       </div>
+       <button mat-button (click)="onPopulatePayment()">
+         <mat-icon>autorenew</mat-icon>
+         Populate Payments
+       </button>
+ 
+ 
+       <button mat-button (click)="onSubmit3()">
+         <mat-icon>euro_symbol</mat-icon>
+         Confirm Payment Setup
+       </button>
+ 
+     </form>
+   </div>
+ <div *ngIf="showPayment1">
+   <h4>Calculated Payment Details </h4>
+ </div>
+ <table class="table table-striped" *ngIf="showPayment1">
+   <thead>
+   <tr>
+     <th class="hidden">Id</th>
+     <th>Amount Paid [$CAD]</th>
+     <th>Scheduled Amount [$CAD]</th>
+     <th>Net Course Amount</th>
+     <th>Payment Date</th>
+     <th>Scheduled Payment Date</th>
+     <th>PaymentNotes</th>
+     <th>Status</th>
+   </tr>
+   </thead>
+   <tbody>
+   <tr *ngFor="let payment of payments">
+     <td class="hidden">{{payment.id}}</td>
+     <td>{{payment.amountPaid}}</td>
+     <td>{{payment.weeklyAmountPaid}}</td>
+     <td>{{payment.totalAmount}}</td>
+     <td>{{payment.paymentDate}}</td>
+     <td>{{payment.scheduledPaymentDate}}</td>
+     <td>{{payment.paymentNotes}}</td>
+     <td>{{payment.recordStatus}}</td>
+   </tr>
+   </tbody>
+ </table>
+ {{errorMessage}}      
+
+</mat-tab>
+
+</mat-tab-group>

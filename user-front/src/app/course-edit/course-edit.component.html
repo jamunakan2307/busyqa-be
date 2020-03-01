@@ -1,0 +1,65 @@
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=5">
+  <style>
+    div {
+      margin-bottom: 15px;
+      padding: 4px 12px;
+    }
+
+    .danger {
+      background-color: #ffdddd;
+      border-left: 6px solid #f44336;
+    }
+
+    .success {
+      background-color: #ddffdd;
+      border-left: 6px solid #4CAF50;
+    }
+
+    .info {
+      background-color: #e7f3fe;
+      border-left: 6px solid #2196F3;
+    }
+
+    .warning {
+      background-color: #ffffcc;
+      border-left: 6px solid #ffeb3b;
+    }
+  </style>
+</head>
+
+<div class="center-div">
+  <div class="row justify-content-md-center"><h1 class="text-center">Edit Course</h1>
+    <form [formGroup]="editForm" (ngSubmit)="onSubmit()">
+      <div class="hidden">
+        <input type="text" formControlName="id" placeholder="id" name="id" class="form-control input-underline input-lg"
+               id="id">
+      </div>
+      <div class="form-group">
+        <label for="courseName">Course Name</label>
+        <input type="text" formControlName="courseName" placeholder="courseName" name="courseName"
+               class="form-control input-underline input-lg" id="courseName">
+      </div>
+      <div class="form-group">
+        <label for="courseAmount">Course Amount[$CAD]</label>
+        <input type="text" formControlName="courseAmount" placeholder="courseAmount" name="courseAmount"
+               class="form-control input-underline input-lg" id="courseAmount">
+      </div>
+      <div class="form-group">
+        <label for="status">Status:</label>
+        <select formControlName="status" placeholder="status" name="status"
+                class="form-control input-underline input-lg" id="status">
+          <option value="Active">Active</option>
+          <option value="InActive">InActive</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="courseLenght">Course Length[Weeks]</label>
+        <input type="text" formControlName="courseLenght" placeholder="courseLenght" name="courseLenght"
+               class="form-control input-underline input-lg" id="courseLenght">
+      </div>
+      <button class="rounded-btn3" style="width:200px"> Update</button>
+
+    </form>
+  </div>
+</div>

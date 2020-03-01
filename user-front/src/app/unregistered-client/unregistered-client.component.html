@@ -1,0 +1,173 @@
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=5">
+  <style>
+    div {
+      margin-bottom: 15px;
+      padding: 4px 12px;
+    }
+
+    .danger {
+      background-color: #ffdddd;
+      border-left: 6px solid #f44336;
+    }
+
+    .success {
+      background-color: #ddffdd;
+      border-left: 6px solid #4CAF50;
+    }
+
+    .info {
+      background-color: #e7f3fe;
+      border-left: 6px solid #2196F3;
+    }
+
+    .warning {
+      background-color: #ffffcc;
+      border-left: 6px solid #ffeb3b;
+    }
+  </style>
+
+</head>
+<img src="./assets/BusyQaCrm.png" width="250px"/>
+
+<p><strong>Welcome to busyQA. </strong></p>
+<p> You are required to complete the registration and provide e payment plan
+  agreement if you are applying for a payment plan and certification if pursing for intern . You cannot start a
+  course/internship without completing this
+  registration form.</p>
+<div>
+  <button class="rounded-btn3" (click)="downloadFileSystem()" style="margin-right: 120px;" *ngIf="!intern">DownLoad
+    Payment Plan Agreement
+  </button>
+  <div>
+    <div class="center-div">
+      <div class="col-md-6 user-container" style="max-width:1000px;">
+        <div class="row justify-content-md-center">
+          <h1 class="text-center">Registration</h1>
+          <form [formGroup]="editForm" (ngSubmit)="onSubmit()">
+            <div class="hidden">
+              <div class="form-group">
+                <input type="text" formControlName="id" placeholder="id" name="id"
+                       class="form-control input-underline input-lg" id="id">
+              </div>
+
+            </div>
+            <div class="form-group">
+              <label for="currentlyEmployed">Are you currently employed?: </label>
+              <select class="form-control input-underline input-lg" (ngModelChange)="onSelecetionChange($event)"
+                      formControlName="currentlyEmployed" placeholder="currentlyEmployed" name="currentlyEmployed"
+                      class="form-control input-underline input-lg" id="currentlyEmployed" required currentlyEmployed>
+                <option value="YES" selected>YES</option>
+                <option value="NO">NO</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="currentlyTechIndustry" *ngIf="individual">Are you currently in a job in the Tech
+                Industry: </label>
+              <select class="form-control input-underline input-lg" (ngModelChange)="onSelecetionChange2($event)"
+                      formControlName="currentlyTechIndustry" placeholder="currentlyTechIndustry"
+                      name="currentlyTechIndustry" class="form-control input-underline input-lg"
+                      id="currentlyTechIndustry" *ngIf="individual">
+                <option value="YES" selected>YES</option>
+                <option value="NO">NO</option>
+              </select>
+            </div>
+
+            <div class="form-group" *ngIf="techjob">
+              <label for="currentJob">If Yes, what is your Job Title? </label>
+              <input type="text" formControlName="currentJob" placeholder="currentJob" name="currentJob"
+                     class="form-control input-underline input-lg" id="currentJob" *ngIf="individual">
+            </div>
+
+            <div class="form-group">
+              <label for="desriredJob">Desired Job Title after taking this Training? </label>
+              <input type="text" formControlName="desriredJob" placeholder="desriredJob" name="desriredJob"
+                     class="form-control input-underline input-lg" id="desriredJob" required desriredJob>
+            </div>
+
+            <div class="form-group">
+              <label for="address">Address (Unit and StreeName): </label>
+              <input type="text" formControlName="address" placeholder="address" name="addres"
+                     class="form-control input-underline input-lg" id="address" required address>
+            </div>
+
+
+            <div class="form-group">
+              <label for="country">Country: </label>
+              <select formControlName="country" placeholder="country" name="country"
+                      class="form-control input-underline input-lg" id="country"
+                      (change)="changeCountry($event.target.value)" required country>
+                <option *ngFor="let count of countryList">{{count.name}}</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="city">City: </label>
+              <select formControlName="city" placeholder="city" name="city"
+                      class="form-control input-underline input-lg" id="city" required city>
+                <option *ngFor="let city of cities">{{city}}</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="state">State: </label>
+              <select formControlName="state" placeholder="state" name="state"
+                      class="form-control input-underline input-lg" id="state" required state>
+                <option *ngFor="let state of states">{{state}}</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="zipCode">ZipCode: </label>
+              <input type="text" formControlName="zipCode" placeholder="zipCode" name="zipCode"
+                     class="form-control input-underline input-lg" id="zipCode" required zipCode>
+            </div>
+
+            <div class="form-group">
+              <label for="emergencyPhoneNumber">Emergency Phone Number:</label>
+              <input type="text" formControlName="emergencyPhoneNumber" placeholder="emergencyPhoneNumber"
+                     name="emergencyPhoneNumber" class="form-control input-underline input-lg"
+                     id="emergencyPhoneNumber">
+            </div>
+
+            <div class="form-group">
+              <label for="paymentPlan">Payment Plan: </label>
+              <select class="form-control input-underline input-lg" formControlName="paymentPlan"
+                      placeholder="paymentPlan" name="paymentPlan" class="form-control input-underline input-lg"
+                      id="paymentPlan" readonly="false">
+                <option value="One_Time_Credit_Card" selected>One Time - Credit Card</option>
+                <option value="One_Time_Debit_Card_Cash">One Time - Debit Card/Cash</option>
+                <option value="One_Time_Email_transfer,Automated_Weekly">One Time - Email MoneyO</option>
+                <option value="Automated_Weekly">Automated Weekly</option>
+                <option value="Automated_Bi_Weekly">Automated Bi-weekly</option>
+                <option value="Automated_Weekly">Automated Monthly</option>
+                <option value="UNSCHEDULED">UNSCHEDULED</option>
+              </select>
+            </div>
+            <div class="info">
+              <p *ngIf="!intern">Please upload Payment Agreement Plan here ....before clicking 'Register'</p>
+              <p *ngIf="intern">Please upload Required Certificates for Internship ....before clicking 'Register'</p>
+              <input #fileInput type="file" ng2FileSelect [uploader]="uploader"/>
+
+              <div class="drop-box" ng2FileDrop
+                   [ngClass]="{'dragover': isDropOver}"
+                   [uploader]="uploader"
+                   (fileOver)="fileOverAnother($event)"
+                   (click)="fileClicked()">
+              </div>
+            </div>
+            <div class="form-group" *ngIf="intern">
+              <label for="internDate" *ngIf="intern">Examination Date </label>
+              <input type="date" name="internDate" placeholder="internDate" name="internDate"
+                     class="form-control input-underline input-lg" id="internDate" [(ngModel)]="form.internDate"
+                     #internDate="ngModel" *ngIf="intern">
+
+            </div>
+            <div class="form-group">
+              <button class="rounded-btn3 ">Register Me</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>

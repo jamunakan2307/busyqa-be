@@ -1,0 +1,74 @@
+<div class="center-div">
+  <div class="row justify-content-md-center">
+    <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+
+      <div class="form-group">
+        <label for="courseName">Course </label>
+        <select class="form-control input-underline input-lg" name="courseName" [(ngModel)]="form.courseName"
+                #courseName="ngModel" required courseName>
+          <option *ngFor="let course of courses" [value]="course.courseName">{{course.courseName}}</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="trainerName">Trainer Name </label>
+        <select class="form-control input-underline input-lg" name="trainerName" [(ngModel)]="form.trainerName"
+                #trainerName="ngModel" required trainerName>
+          <option *ngFor="let trainer of trainers" [value]="trainer.firstName">{{trainer.firstName}}</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="courseLocation">Training Locations</label>
+        <select class="form-control input-underline input-lg" name="courseLocation" [(ngModel)]="form.courseLocation"
+                #courseLocation="ngModel" required courseLocation>
+                <option *ngFor="let location of locations" [value]="location.description">{{location.description}}</option>
+
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="startDate">Course Start Date </label>
+        <input type="date" name="startDate" placeholder="startDate" name="startDate"
+               class="form-control input-underline input-lg" id="startDate" [(ngModel)]="form.startDate"
+               #startDate="ngModel" required startDate>
+
+      </div>
+
+      <div class="form-group">
+        <label for="registrationFees">Registration Fees [$CAD]</label>
+        <input type="text" class="form-control input-underline input-lg" name="registrationFees"
+               [(ngModel)]="form.registrationFees" #taxPercentage="ngModel" required registrationFees/>
+        <div *ngIf="f.submitted && registrationFees.invalid">
+          <div *ngIf="registrationFees.errors.required">Registration Fees is required</div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="taxPercentage">Tax Percentage [%]</label>
+        <input type="text" class="form-control input-underline input-lg" name="taxPercentage "
+               [(ngModel)]="form.taxPercentage" #taxPercentage="ngModel" required taxPercentage/>
+        <div *ngIf="f.submitted && taxPercentage.invalid">
+          <div *ngIf="taxPercentage.errors.required">Percentage is required</div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="batchDetails">Course Details [HTML Content]</label>
+        <textarea rows="24" cols="500" class="form-control textarea" name="batchDetails" [(ngModel)]="form.batchDetails"
+                  #batchDetails="ngModel"
+                  required minlength="1"></textarea>
+        <div *ngIf="f.submitted && batchDetails.invalid">
+          <div *ngIf="batchDetails.errors.required">Course Details is required</div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <button class="rounded-btn3">Create</button>
+        <button class="rounded-btn3" (click)="downloadFileSystem()" style="margin-right: 120px;" *ngIf="!intern">DownLoad
+          Sample Batch Email[HTML]
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

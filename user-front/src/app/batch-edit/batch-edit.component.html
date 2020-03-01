@@ -1,0 +1,88 @@
+<div class="center-div">
+  <div class="row justify-content-md-center"><h2 class="text-center">Edit Batch</h2>
+
+    <form [formGroup]="editForm" (ngSubmit)="onSubmit()">
+      <div class="hidden">
+        <input type="text" formControlName="id" placeholder="id" name="id" class="form-control input-underline input-lg"
+               id="id">
+      </div>
+      <div class="form-group">
+        <label for="courseName">Course Name</label>
+        <select formControlName="courseName" placeholder="courseName" name="courseName"
+                class="form-control input-underline input-lg" id="courseName">
+          <option *ngFor="let course of courses" [value]="course.courseName">{{course.courseName}}</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="trainerName">Trainer Name </label>
+        <select formControlName="trainerName" placeholder="trainerName" name="trainerName"
+                class="form-control input-underline input-lg" id="trainerName">
+          <option *ngFor="let trainer of trainers" [value]="trainer.firstName">{{trainer.firstName}}</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="courseLocation">Location </label>
+        <select formControlName="courseLocation" placeholder="courseLocation" name="courseLocation"
+                class="form-control input-underline input-lg" id="courseLocation">
+          <option value="Suite 1532, 4 Robert Speck Parkway, Mississauga ON L4Z 1S1" selected>Suite 1532, 4 Robert Speck
+            Parkway, Mississauga ON L4Z 1S1
+          </option>
+          <option value="Iceland Mississauga, 705 Matheson Blvd E, Mississauga ON L4Z 3X9">Iceland Mississauga, 705
+            Matheson Blvd E, Mississauga ON L4Z 3X9
+          </option>
+          <option value="Swansea Town Hall Community Center, 95 Lavinia Ave, Toronto ON M6S 3H9">Swansea Town Hall
+            Community Center, 95 Lavinia Ave, Toronto ON M6S 3H9
+          </option>
+          <option value="Armadale Community Center, 2401 Denison St, Markham ON L3S 1E7">Armadale Community Center, 2401
+            Denison St, Markham ON L3S 1E7
+          </option>
+          <option value="Cassie Campbell Community Center, 1050 Sandalwood Pkwy W, Brampton ON L7A 0K9">Cassie Campbell
+            Community Center, 1050 Sandalwood Pkwy W, Brampton ON L7A 0K9
+          </option>
+        </select>
+
+      </div>
+
+      <div class="form-group">
+        <label for="startDate">Start Date </label>
+        <input type="date" formControlName="startDate" placeholder="startDate" name="startDate"
+               class="form-control input-underline input-lg" id="startDate">
+
+      </div>
+
+      <div class="form-group">
+        <label for="registrationFees">Registration Fees</label>
+        <input type="text" formControlName="registrationFees" placeholder="registrationFees" name="registrationFees"
+               class="form-control input-underline input-lg" id="registrationFees">
+      </div>
+
+      <div class="form-group">
+        <label for="taxPercentage">Tax Percentage [%]</label>
+        <input type="text" formControlName="taxPercentage" placeholder="taxPercentage" name="taxPercentage"
+               class="form-control input-underline input-lg" id="taxPercentage">
+      </div>
+
+
+      <div class="form-group">
+        <label for="batchStatus">Status:</label>
+        <select formControlName="batchStatus" placeholder="batchStatus" name="batchStatus"
+                class="form-control input-underline input-lg" id="batchStatus">
+          <option value="Scheduled">Scheduled</option>
+          <option value="Ongoing">Ongoing</option>
+          <option value="Completed">Completed</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="batchDetails">About Course </label>
+        <textarea formControlName="batchDetails" placeholder="batchDetails" name="batchDetails"
+                  class="form-control textarea" id="batchDetails" required></textarea>
+
+      </div>
+
+
+      <button class="rounded-btn3">Update</button>
+    </form>
+  </div>
+</div>

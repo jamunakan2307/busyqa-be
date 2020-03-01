@@ -1,0 +1,144 @@
+<div *ngIf="isSignedUp; else signupForm">
+  Your registration is successful. Please login!
+</div>
+<ng-template #signupForm>
+  <img src="./assets/BusyQaCrm.png" width="250px"/>
+
+  <div class="center-div">
+    <div class="row justify-content-md-center">
+      <form name="form" (ngSubmit)="f.form.valid" #f="ngForm" novalidate>
+        <div class="form-group">
+          <label for="firstName">Your First name</label>
+          <input type="text" class="form-control input-underline input-lg" name="firstName" [(ngModel)]="form.firstName"
+                 #firstName="ngModel" required/>
+          <div *ngIf="f.submitted && firstName.invalid">
+            <div *ngIf="firstName.errors.required">First Name is required</div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="lastName">Your Last name</label>
+          <input type="text" class="form-control input-underline input-lg" name="lastName" [(ngModel)]="form.lastName"
+                 #lastName="ngModel" required/>
+          <div *ngIf="f.submitted && lastName.invalid">
+            <div *ngIf="lastName.errors.required">Last Name is required</div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="username">Prefferred Username</label>
+          <input type="text" class="form-control input-underline input-lg" name="username" [(ngModel)]="form.username"
+                 #username="ngModel"
+                 required/>
+          <div *ngIf="f.submitted && username.invalid">
+            <div *ngIf="username.errors.required">Username is required</div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="text" class="form-control input-underline input-lg" name="email" [(ngModel)]="form.email"
+                 #email="ngModel" required email/>
+          <div *ngIf="f.submitted && email.invalid">
+            <div *ngIf="email.errors.required">Email is required</div>
+            <div *ngIf="email.errors.email">Email must be a valid email address</div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="phoneNumber">Phone Number:</label>
+          <input type="text" class="form-control input-underline input-lg" name="phoneNumber"
+                 [(ngModel)]="form.phoneNumber" #phoneNumber="ngModel" required phoneNumber/>
+        </div>
+
+
+        <div class="form-group">
+          <label for="courseName">Course Name</label>
+          <select class="form-control input-underline input-lg" name="courseName" [(ngModel)]="form.courseName"
+                  #courseName="ngModel" required courseName>
+            <option *ngFor="let course of courses" [value]="course.courseName">{{course.courseName}}</option>
+          </select>
+        </div>
+
+        <button class="rounded-btn3" (click)="getBatch()" style="margin-left: 20px;">Check Course Schedules</button>
+
+        <h2 *ngIf="isCourseChecked">Upcoming Schedules</h2>
+        <table class="table table-responsive" *ngIf="isCourseChecked">
+            <thead>
+            <tr>
+              <th class="hidden">Id</th>
+              <th></th>
+              <th>Start Date</th>
+              <th>Location</th>
+              <th>Seaon</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let batch of batches">
+              <td class="hidden">{{batch.id}}</td>
+              <td>
+                <mat-checkbox (click)="selectedBatch(batch)"> Prefferred</mat-checkbox>
+              </td>
+              <td>{{batch.startDate}}</td>
+              <td>{{batch.courseLocation}}</td>
+              <td>{{batch.season}}</td>
+              <td>{{batch.batch2}}</td>   
+            </tr>
+            </tbody>
+          </table>
+          
+          <div class="center-div" *ngIf="!isBatchChecked">
+              <h2> Selected Schedule </h2>
+            </div>
+            <div>
+              <div *ngIf="!isBatchChecked">
+                <label><h1>Start Date: {{batch2.startDate}}</h1>
+                </label>
+              </div>
+              <div *ngIf="!isBatchChecked">
+                <label><h1>Location: {{batch2.courseLocation}}</h1>
+                  </label>
+              </div>
+          
+            </div>
+
+        <div class="form-group">
+          <label for="leadSource">Lead Source</label>
+          <select class="form-control input-underline input-lg" name="leadSource" [(ngModel)]="form.leadSource"
+                  #leadSource="ngModel" required leadSource>
+            <option value="Advertisement" selected>Advertisement</option>
+            <option value="Cold_call">Cold Call</option>
+            <option value="Employee_Referral">Employee Referral</option>
+            <option value="External_Referral">External Referral</option>
+            <option value="Online_Store">Online Store</option>
+            <option value="Partner">Partner</option>
+            <option value="Public_Relations">Public Relations</option>
+            <option value="Sales_Email_Alias">Sales Email Alias</option>
+            <option value="Seminar_Partner">Seminar Partner</option>
+            <option value="Trade_show">Trade show</option>
+            <option value="Web_Download">Web Download</option>
+            <option value="Web_Research">Web Research</option>
+            <option value="Chat">Chat</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="studentComments">Comments:</label>
+          <input type="text" class="form-control input-underline input-lg" name="studentComments"
+                 [(ngModel)]="form.studentComments" #studentComments="ngModel" required studentComments/>
+        </div>
+
+        <div class="form-group">
+          <button class="rounded-btn3" (click)="onSubmit()" *ngIf="!isBatchChecked">Register</button>
+          <button class="rounded-btn3" (click)="gotoLoginPage()" style="margin-left: 20px;"> Discard</button>
+
+          <div *ngIf="f.submitted && isSignUpFailed" class="alert alert-warning">
+            Signup failed!<br/>{{errorMessage}}
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+</ng-template>
+

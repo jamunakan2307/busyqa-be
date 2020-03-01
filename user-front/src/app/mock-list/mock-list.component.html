@@ -1,0 +1,54 @@
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    div {
+      margin-bottom: 15px;
+      padding: 4px 12px;
+      text-indent: 10%;
+
+    }
+
+    .warning {
+      background-color: #ffffcc;
+      border-left: 6px solid #ffeb3b;
+      text-indent: 10%;
+    }
+  </style>
+</head>
+<div class="center-div">
+  <h4>Mocks</h4>
+</div>
+<input class="form-control input-underline input-lg" type="text" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder="Search">
+
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th class="hidden">Id</th>
+    <th>First Name</th>
+    <th>Last Name</th>
+    <th>E-mail</th>
+    <th>Contact Phone Number:</th>
+    <th>Interview Date :</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let user of users| filter:searchText">
+    <td class="hidden">{{user.id}}</td>
+    <td>{{user.firstName}}</td>
+    <td>{{user.lastName}}</td>
+    <td>{{user.email}}</td>
+    <td>{{user.phoneNumber}}</td>
+    <td>{{user.interviewDate}}</td>
+    <td>
+
+      <button mat-button (click)="editUser(user)">
+        <mat-icon>airplanemode_active</mat-icon>
+        Change status
+      </button>
+    </td>
+
+
+  </tr>
+  </tbody>
+</table>
+{{errorMessage}}

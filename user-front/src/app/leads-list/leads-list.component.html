@@ -1,0 +1,98 @@
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+      div {
+        margin-bottom: 15px;
+        padding: 4px 12px;
+        text-indent: 10%;
+  
+      }
+  
+  
+      .warning {
+        background-color: #ffffcc;
+        border-left: 6px solid #ffeb3b;
+        text-indent: 10%;
+      }
+    </style>
+  </head>
+  <div class="center-div">
+  <h4>Leads</h4>
+  </div>
+      <button class="rounded-btn3" style="width:150px" (click)="addClientUser()"> + Client</button>
+      <input class="form-control input-underline input-lg" type="text" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder="Search">
+
+<div class="hidden">
+  <button mat-button (click)="reCalculationALl()">
+    <mat-icon>settings</mat-icon>
+    View Tractions
+  </button>
+</div>
+
+<table class="table table-striped">
+    <thead>
+    <tr>
+      <th class="hidden">Id</th>
+      <th>First Name</th>
+      <th>E-mail</th>
+      <th>Contact</th>
+      <th>Course</th>
+      <th>Location</th>
+      <th>Registered?</th>
+
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let user of users| filter:searchText">
+      <td class="hidden">{{user.id}}</td>
+      <td>{{user.firstName}}</td>
+      <td>{{user.email}}</td>
+      <td>{{user.phoneNumber}}</td>
+      <td>{{user.courseName}}</td>
+      <td>{{user.courseLocation}}</td>
+      <td>{{user.isRegisteredStudent}}</td>
+      <td>
+          <div class="hidden">
+          <button mat-button (click)="viewClient(user)">
+              <mat-icon>account_circle</mat-icon>
+              View Profile
+          </button>
+        </div>
+      </td>
+
+      <td>
+          <button mat-button (click)="deleteClient(user)">
+              <mat-icon>delete</mat-icon>
+              Delete
+          </button>
+
+          <button mat-button (click)="approveUser(user)">
+              <mat-icon>done_all</mat-icon>
+              Approve
+          </button>
+
+          <button mat-button (click)="downloadFileSystem(user)">
+              <mat-icon>cloud_download</mat-icon>
+              Document
+          </button>
+
+          <button mat-button (click)="leadsCentral(user)">
+              <mat-icon>build</mat-icon>
+              Setup
+          </button>
+          <div class="hidden">
+          <button mat-button (click)="viewTractions(user)">
+              <mat-icon>receipt</mat-icon>
+              View Tractions
+          </button>
+          </div>
+    </tr>
+    </tbody>
+  </table>
+{{errorMessage}}
+<footer>
+    <div class="center-div2">
+        <p><strong> Deleteing a client would delete the user permissions</strong>  </p>
+        <p><strong>Approving A Student?! Make Sure Payment Setup is Done </strong>  </p>
+      </div>
+    </footer>

@@ -1,0 +1,59 @@
+<h4>Payment History of the student</h4>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    div {
+      margin-bottom: 15px;
+      padding: 4px 12px;
+    }
+
+    .danger {
+      background-color: #ffdddd;
+      border-left: 6px solid #f44336;
+    }
+
+    .success {
+      background-color: #ddffdd;
+      border-left: 6px solid #4CAF50;
+    }
+
+    .info {
+      background-color: #e7f3fe;
+      border-left: 6px solid #2196F3;
+    }
+
+    .warning {
+      background-color: #ffffcc;
+      border-left: 6px solid #ffeb3b;
+    }
+  </style>
+</head>
+<button class="rounded-btn" style="width:300px" (click)="addPayment()"> Add Payment</button>
+<div class="center-div">
+  <div class="row justify-content-md-center"><h2 class="text-center">Edit Student Details</h2>
+
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th>Amount Paid [$CAD]</th>
+        <th>Total Amount [$CAD]</th>
+        <th>Amount To Be Paid [$CAD]</th>
+        <th>Payment Dates</th>
+        <th>Notes</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let user of users">
+        <td>{{user.amountPaid}}</td>
+        <td>{{user.totalAmount}}</td>
+        <td>{{user.differenceAmount}}</td>
+        <td>{{user.paymentDate | date:"MM/dd/yyy:HH:mm"}}</td>
+        <td>{{user.paymentNotes}}</td>
+        <td>{{user.status}}</td>
+        <td>{{user.statusAsOfDay | date:"MM/dd/yyy:HH:mm"}}</td>
+      </tr>
+      </tbody>
+    </table>
+    {{errorMessage}}
+  </div>
+</div>

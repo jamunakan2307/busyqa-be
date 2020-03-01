@@ -1,0 +1,201 @@
+<button mat-button (click)="back()">
+    <mat-icon>skip_previous</mat-icon>
+    Back
+</button>
+
+        <h4> {{clients.firstName}} {{clients.lastName}} </h4>
+
+<mat-tab-group>
+  <mat-tab label="Profile">  
+    <div class="center-div">
+      <div>
+        <div>
+          <label><h1>UserName : <strong>{{clients.username}}</strong></h1></label>
+        </div>
+        <div>
+          <label><h1>Reach Me @ : 
+         <strong>{{clients.email}}, #{{clients.phoneNumber}}</strong>, Emrgency Phone: <strong>{{clients.emergencyPhoneNumber}}</strong></h1></label>
+        </div>
+        <div>
+          <label><h1>Contact Details : 
+            <strong>{{clients.address}},{{clients.city}},{{clients.state}}, {{clients.country}}, {{clients.zipCode}}</strong></h1></label>
+        </div>
+      
+      </div>
+      <div class="center-div">
+        <h4>My Registration Details</h4>
+      </div>
+
+        <div>
+          <label>
+            <h1><p>Employed? : <strong>{{clients.currentlyEmployed}} </strong></p>
+              <p>Whether in Tech Industry : <strong>{{clients.currentlyTechIndustry}}</strong></p>
+              <p>Current Job : <strong>{{clients.currentJob}}</strong></p>
+              <p>Desired Job : <strong>{{clients.desriredJob}}</strong></p>
+              <p>Lead Source By : <strong>{{clients.leadSource}}</strong></p>
+              <p>MyOpinion : <strong>{{clients.studentComments}}</strong></p>
+            </h1>
+          </label>
+        </div>
+
+      <div class="center-div">
+        <h4>My Course Details</h4>
+      </div>
+      
+      <div>
+        <div>
+          <label>
+            <h1><p>Course: <strong>{{clients.courseName}}</strong></p>
+              <p>Duration: <strong>{{clients.courseLenght}}(weeks)</strong></p>
+              <p>Course Start Date <strong>{{clients.startDate}}</strong></p>
+              <p>Location: <strong>{{clients.courseLocation}}</strong></p>
+            </h1>
+          </label>
+        </div>
+      </div>
+      
+      <div class="center-div">
+        <h4>My Payment Details</h4>
+      </div>
+      
+      <div>
+        <div>
+          <label>
+            <h1><p>PaymentPlan: <strong>{{clients.paymentPlan}}</strong></p>
+              <p>Payment Status: <strong>{{clients.paymentStatus}}</strong></p>
+            </h1>
+          </label>
+        </div>
+      </div>
+    </div>
+  
+
+
+  </mat-tab>
+  <mat-tab label="Payment Setup"> 
+    <div class="center-div" *ngIf="!paySetupCheck">
+        <h4>You have Already Setup the Payments Plan for this lead</h4>
+      </div>
+      <div class="center-div" *ngIf="paySetupCheck">
+        <div class="row justify-content-md-center">
+          <h1 class="text-center"><h1> Course Details </h1></h1>
+      
+          <h1 class="text-center"><h1>Course :: <strong>{{clients.courseName}} </strong>, Duration :: <strong>{{clients.courseLenght}} (weeks)</strong> , Start
+            Date:: <strong>{{clients.startDate}}</strong>, EndDate:: <strong>{{clients.endDate}}</strong>,  Total Amount:: <strong>${{clients.totalCourseAmount}} CAD</strong></h1>
+          </h1>
+      
+          <form [formGroup]="editForm" *ngIf="paySetupCheck">
+      
+            <div class="hidden">
+              <input type="text" formControlName="id" placeholder="id" name="id" class="form-control input-underline input-lg"
+                     id="id">
+            </div>
+      
+            <div class="form-group">
+              <label for="clientStatus">Client Status: </label>
+              <select class="form-control input-underline input-lg" formControlName="clientStatus" placeholder="clientStatus"
+                      name="clientStatus" class="form-control input-underline input-lg" id="clientStatus" readonly="false">
+                <option value="INTERN">INTERN</option>
+                <option value="ALUMINI">ALUMINI</option>
+                <option value="STUDENT" selected>STUDENT</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="paymentPlan" *ngIf="paySetupCheck">Payment Plan: </label>
+              <select class="form-control input-underline input-lg" formControlName="paymentPlan" placeholder="paymentPlan"
+                      name="paymentPlan" class="form-control input-underline input-lg" id="paymentPlan" readonly="false"
+                      *ngIf="paySetupCheck">
+                <option value="One_Time_Credit_Card" selected>One Time - Credit Card</option>
+                <option value="One_Time_Debit_Card_Cash">One Time - Debit Card/Cash</option>
+                <option value="One_Time_Email_transfer,Automated_Weekly">One Time - Email MoneyO</option>
+                <option value="Automated_Weekly">Automated Weekly</option>
+                <option value="Automated_Bi_Weekly">Automated Bi-weekly</option>
+                <option value="Automated_Monthly">Automated Monthly</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="totaDiscountAmount" *ngIf="paySetupCheck">Total Discount Amount [$CAD]</label>
+              <input type="text" class="form-control input-underline input-lg" formControlName="totaDiscountAmount"
+                     placeholder="totaDiscountAmount" name="totaDiscountAmount" class="form-control input-underline input-lg"
+                     id="totaDiscountAmount" *ngIf="paySetupCheck">
+            </div>
+      
+            <div class="form-group">
+              <label for="registrationFees" *ngIf="paySetupCheck">Registration Fees [$CAD]</label>
+              <input type="text" class="form-control input-underline input-lg" formControlName="registrationFees"
+                     placeholder="registrationFees" name="registrationFees" class="form-control input-underline input-lg"
+                     id="registrationFees" *ngIf="paySetupCheck" readonly="true">
+            </div>
+      
+      
+            <div class="form-group">
+              <label for="paymentStatus">Payment Status: </label>
+              <select class="form-control input-underline input-lg" formControlName="paymentStatus"
+                      placeholder="paymentStatus" name="paymentStatus" class="form-control input-underline input-lg"
+                      id="paymentStatus" readonly="false">
+                <option value="ON_SCHEDULE" selected>ON SCHEDULE</option>
+                <option value="DUE_FOR_A_WEEK">DUE FOR A WEEK</option>
+                <option value="SERIOUS_OVER_DUE">SERIOUS OVER DUE</option>
+                <option value="UNSCHEDULED">UNSCHEDULED</option>
+              </select>
+            </div>
+      
+            <div class="form-group">
+              <label for="anchorDate" *ngIf="paySetupCheck">Payment Anchor Date </label>
+              <input type="date" formControlName="anchorDate" placeholder="anchorDate" name="anchorDate"
+                     class="form-control input-underline input-lg" id="anchorDate">
+      
+            </div>
+            <button mat-button (click)="onPopulatePayment()">
+              <mat-icon>autorenew</mat-icon>
+              Populate Payments
+            </button>
+      
+      
+            <button mat-button (click)="onSubmit()">
+              <mat-icon>euro_symbol</mat-icon>
+              Confirm Payment Setup
+            </button>
+            <div class="hidden">
+              <button mat-button (click)="onPayment()">
+                <mat-icon>monetization_on</mat-icon>
+                Add Payment
+              </button>
+            </div>
+      
+          </form>
+        </div>
+      </div>
+      <div *ngIf="showPayment">
+        <h4>Calculated Payment Details </h4>
+      </div>
+      <table class="table table-striped" *ngIf="showPayment">
+        <thead>
+        <tr>
+          <th class="hidden">Id</th>
+          <th>Amount Paid [$CAD]</th>
+          <th>Scheduled Amount [$CAD]</th>
+          <th>Net Course Amount</th>
+          <th>Payment Date</th>
+          <th>Scheduled Payment Date</th>
+          <th>PaymentNotes</th>
+          <th>Status</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let payment of payments">
+          <td class="hidden">{{payment.id}}</td>
+          <td>{{payment.amountPaid}}</td>
+          <td>{{payment.weeklyAmountPaid}}</td>
+          <td>{{payment.totalAmount}}</td>
+          <td>{{payment.paymentDate}}</td>
+          <td>{{payment.scheduledPaymentDate}}</td>
+          <td>{{payment.paymentNotes}}</td>
+          <td>{{payment.recordStatus}}</td>
+        </tr>
+        </tbody>
+      </table>
+      {{errorMessage}}      
+
+  </mat-tab>
+</mat-tab-group>
